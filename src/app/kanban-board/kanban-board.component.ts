@@ -3,7 +3,13 @@ import { KanbanItemComponent } from './kanban-item/kanban-item.component';
 
 export interface KanbanBoard {
   itemListName: string;
-  itemList: Array<any>;
+  itemList: Array<KanbanItem>;
+}
+
+export interface KanbanItem {
+  itemId: number | undefined | null;
+  itemTitle: string | undefined | null;
+  itemCurrentState: string | undefined | null;
 }
 
 @Component({
@@ -12,6 +18,12 @@ export interface KanbanBoard {
   styleUrls: ['./kanban-board.component.scss'],
 })
 export class KanbanBoardComponent implements OnInit {
+  id: number = 0;
+
+  itemIdGenerator(): number {
+    return this.id++;
+  }
+
   listTypes: Array<KanbanBoard> = [
     {
       itemListName: 'TO-DO',
@@ -32,8 +44,33 @@ export class KanbanBoardComponent implements OnInit {
   ngOnInit(): void {}
 
   addTaskToTodoList() {
-    let todoComponent = '';
-
+    let todoComponent: KanbanItem = {
+      itemId: this.itemIdGenerator(),
+      itemTitle: '',
+      itemCurrentState: 'toDo',
+    };
     this.listTypes[0].itemList.push(todoComponent);
+  }
+  itemListChangeEvent(item: any) {
+    this.listTypes.forEach((e) => {
+      e.itemList.forEach((listItem) => {
+        if (listItem.itemId === item.itemId) {
+          e.itemList.splice(e.itemList.indexOf(listItem), 1);
+        }
+      });
+    });
+    switch (item.itemCurrentState) {
+      case 'toDo':
+        this.listTypes[0].itemList.push(item);
+        break;
+      case 'inProgress':
+        this.listTypes[1].itemList.push(item);
+        break;
+      case 'completed':
+        this.listTypes[2].itemList.push(item);
+        break;
+    }
+
+    console.log(this.listTypes);
   }
 }

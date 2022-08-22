@@ -1,5 +1,9 @@
 <div class="item-list">
   <h4>{{ listName }}</h4>
 
-  <app-kanban-item *ngFor="let item of kanbanItems"></app-kanban-item>
+  <app-kanban-item
+    *ngFor="let item of kanbanItems"
+    [itemDetails]="item"
+    (itemChangeEvent)="itemListChange($event)"
+  ></app-kanban-item>
 </div>

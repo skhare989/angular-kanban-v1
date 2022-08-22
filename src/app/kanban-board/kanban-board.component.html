@@ -4,6 +4,7 @@
       class="item-list"
       [listName]="list.itemListName"
       [kanbanItems]="list.itemList"
+      (itemListChangeEvent)="itemListChangeEvent($event)"
     ></app-kanban-item-list>
   </div>
 </div>

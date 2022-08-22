@@ -1,4 +1,5 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit, Output, EventEmitter } from '@angular/core';
+import { KanbanItem } from '../kanban-board.component';
 
 @Component({
   selector: 'app-kanban-item-list',
@@ -7,9 +8,13 @@ import { Component, Input, OnInit } from '@angular/core';
 })
 export class KanbanItemListComponent implements OnInit {
   @Input() listName: string = '';
-  @Input() kanbanItems: Array<Component> = [];
-
+  @Input() kanbanItems: Array<KanbanItem> = [];
+  @Output() itemListChangeEvent = new EventEmitter();
   constructor() {}
 
   ngOnInit(): void {}
+  itemListChange(item: any) {
+    console.log(item);
+    this.itemListChangeEvent.emit(item);
+  }
 }
