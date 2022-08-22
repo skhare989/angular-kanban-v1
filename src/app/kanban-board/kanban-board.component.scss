@@ -1,0 +1,24 @@
+.add-button-container{
+    position: absolute;
+    bottom: 30px;
+    margin: 28px;
+}
+.add-button{
+    background-color: #0066ff;
+    border-radius: 4px;
+    border: none;
+    color: #ffffff;
+    font-weight: 500;
+    padding:  8px 12px;
+}
+.add-button:hover{
+    background-color: #004fc5;
+}
+.item-list{
+    margin: 8px;
+    padding: 8px;
+}
+.kanban-board{
+    display: flex;
+    gap: 16px;
+}

@@ -1,0 +1,12 @@
+<div class="kanban-board">
+  <div *ngFor="let list of listTypes">
+    <app-kanban-item-list
+      class="item-list"
+      [listName]="list.itemListName"
+      [kanbanItems]="list.itemList"
+    ></app-kanban-item-list>
+  </div>
+</div>
+<div class="add-button-container">
+  <button class="add-button" (click)="addTaskToTodoList()">Add Task</button>
+</div>
