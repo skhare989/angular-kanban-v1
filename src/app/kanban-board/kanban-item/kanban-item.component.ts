@@ -19,6 +19,7 @@ export class KanbanItemComponent implements OnInit {
   });
 
   @Output() itemChangeEvent = new EventEmitter();
+  @Output() deleteItemEvent = new EventEmitter();
 
   editingModeState: boolean = false;
   constructor(private fb: FormBuilder) {}
@@ -32,7 +33,9 @@ export class KanbanItemComponent implements OnInit {
   editingModeOn() {
     this.editingModeState = true;
   }
-  deleteItem() {}
+  deleteItem() {
+    this.deleteItemEvent.emit(this.itemDetails.itemId);
+  }
   isEditingModeOn() {
     return this.editingModeState;
   }
@@ -43,6 +46,10 @@ export class KanbanItemComponent implements OnInit {
     this.editingModeState = false;
   }
   cancelChanges() {
+    this.itemForm.setValue({
+      title: this.itemDetails.itemTitle,
+      status: this.itemDetails.itemCurrentState,
+    });
     this.editingModeState = false;
   }
 }

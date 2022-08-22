@@ -5,6 +5,7 @@
       [listName]="list.itemListName"
       [kanbanItems]="list.itemList"
       (itemListChangeEvent)="itemListChangeEvent($event)"
+      (deleteItemWithIdEvent)="deleteItemWithId($event)"
     ></app-kanban-item-list>
   </div>
 </div>

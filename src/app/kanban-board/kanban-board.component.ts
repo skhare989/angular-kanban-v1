@@ -52,13 +52,7 @@ export class KanbanBoardComponent implements OnInit {
     this.listTypes[0].itemList.push(todoComponent);
   }
   itemListChangeEvent(item: any) {
-    this.listTypes.forEach((e) => {
-      e.itemList.forEach((listItem) => {
-        if (listItem.itemId === item.itemId) {
-          e.itemList.splice(e.itemList.indexOf(listItem), 1);
-        }
-      });
-    });
+    this.deleteItemWithId(item.itemId);
     switch (item.itemCurrentState) {
       case 'toDo':
         this.listTypes[0].itemList.push(item);
@@ -70,7 +64,14 @@ export class KanbanBoardComponent implements OnInit {
         this.listTypes[2].itemList.push(item);
         break;
     }
-
-    console.log(this.listTypes);
+  }
+  deleteItemWithId(itemId: any) {
+    this.listTypes.forEach((e) => {
+      e.itemList.forEach((listItem) => {
+        if (listItem.itemId === itemId) {
+          e.itemList.splice(e.itemList.indexOf(listItem), 1);
+        }
+      });
+    });
   }
 }

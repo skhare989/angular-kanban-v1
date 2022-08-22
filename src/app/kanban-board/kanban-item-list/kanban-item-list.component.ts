@@ -10,11 +10,14 @@ export class KanbanItemListComponent implements OnInit {
   @Input() listName: string = '';
   @Input() kanbanItems: Array<KanbanItem> = [];
   @Output() itemListChangeEvent = new EventEmitter();
+  @Output() deleteItemWithIdEvent = new EventEmitter();
   constructor() {}
 
   ngOnInit(): void {}
   itemListChange(item: any) {
-    console.log(item);
     this.itemListChangeEvent.emit(item);
+  }
+  deleteId(itemId: any) {
+    this.deleteItemWithIdEvent.emit(itemId);
   }
 }
